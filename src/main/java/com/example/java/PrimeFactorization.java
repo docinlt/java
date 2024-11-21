@@ -21,7 +21,6 @@ public class PrimeFactorization extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Pirminių dauginamųjų skaidymas");
 
-        // Sukuriame lango elementus
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setVgap(10);
@@ -42,7 +41,6 @@ public class PrimeFactorization extends Application {
 
         Label statusLabel = new Label("Būsena: Pasiruošęs");
 
-        // Išdėstome elementus
         grid.add(startLabel, 0, 0);
         grid.add(startField, 1, 0);
         grid.add(endLabel, 0, 1);
@@ -54,8 +52,7 @@ public class PrimeFactorization extends Application {
         grid.add(progressBar, 0, 4, 2, 1);
         grid.add(statusLabel, 0, 5, 2, 1);
 
-        // Mygtukų veiksmai
-        startButton.setOnAction(e -> {
+        startButton.setOnAction(_ -> {
             if (running) return;
 
             try {
@@ -68,9 +65,8 @@ public class PrimeFactorization extends Application {
             }
         });
 
-        stopButton.setOnAction(e -> running = false);
+        stopButton.setOnAction(_ -> running = false);
 
-        // Rodyti langą
         Scene scene = new Scene(grid, 400, 250);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -105,7 +101,7 @@ public class PrimeFactorization extends Application {
                         String currentStatus = "Skaidomas skaičius: " + i;
                         updateMessage(currentStatus);
 
-                        Thread.sleep(500); // Lėtiname procesą
+                        Thread.sleep(500);
                     }
 
                     writer.write(getTimestamp() + " Skaičiavimo pabaiga.\n");
@@ -119,7 +115,6 @@ public class PrimeFactorization extends Application {
             }
         };
 
-        // Atvaizduojame progreso ir būsenos atnaujinimus
         progressBar.progressProperty().bind(task.progressProperty());
         statusLabel.textProperty().bind(task.messageProperty());
 
